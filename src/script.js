@@ -77,6 +77,17 @@ d20.style.justifyContent = "center";
 d20.style.alignItems = "center";
 d20.style.flexFlow = "column wrap";
 
+// Creating additional buttons for more functionality
+const addBtn = document.createElement("button");
+
+diceBag.appendChild(addBtn);
+diceBag.lastChild.innerText = "Roll with Advantage";
+
+diceBag.appendChild(document.createElement("button"));
+diceBag.lastChild.innerText = "Roll with Disadvantage";
+
+diceBag.appendChild(document.createElement("button"));
+diceBag.lastChild.innerText = "Reset";
 
 // EVENT LISTENERS ********************************************************************************************************
 rollBtn.addEventListener("click", () => {
