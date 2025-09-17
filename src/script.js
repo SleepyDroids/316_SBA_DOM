@@ -89,11 +89,40 @@ diceBag.lastChild.innerText = "Roll with Disadvantage";
 diceBag.appendChild(document.createElement("button"));
 diceBag.lastChild.innerText = "Reset";
 
+// selects the reset button as the 5th child inside of the dice_bag parent element
+document.querySelector("#dice_bag :nth-child(5)").id = "resetBtn";
+document.querySelector("#dice_bag :nth-child(4)").id = "disadvantageBtn";
+document.querySelector("#dice_bag :nth-child(3)").id = "advantageBtn";
+
+const disadvantageBtn = document.getElementById("disadvantageBtn");
+const advantageBtn = document.getElementById("advantageBtn");
+const resetBtn = document.getElementById("resetBtn");
+
 // EVENT LISTENERS ********************************************************************************************************
 rollBtn.addEventListener("click", () => {
   if (d20.firstChild.textContent = "0")
   d20.firstChild.textContent = `${rollDie()}`;
-});
+}); // end of normal D20 roll event handler
+
+advantageBtn.addEventListener("click", () => {
+  isAdvantage = true;
+  if (isAdvantage) {
+    d20.firstChild.textContent = `${rollAdvantage()}`;
+  }
+}); // end of advantage D20 roll event handler
+
+disadvantageBtn.addEventListener("click", () => {
+  isDisadvantage = true;
+  if (isDisadvantage) {
+    d20.firstChild.textContent = `${rollDisadvantage()}`;
+  }
+}); // end of advantage D20 roll event handler
+
+resetBtn.addEventListener("click", () => {
+  if(d20.firstChild.textContent > 0) {
+    d20.firstChild.textContent = "0";
+  }
+}); // end of reset button event handler 
 
 // FUNCTIONS ********************************************************************************************************
 function rollDie() {
@@ -124,7 +153,7 @@ function rollAdvantage() {
 
   for (let i = 0; i < advantageRolls.length; i++) {
     // Updated: ultimately didn't need this additional logic to make this function work
-    // not quite clear while I added it initially but we're learning 🧠
+    // not quite clear while I added it initially but we're learning! 🧠
     // if (advantageRolls[i] >= 1) {
     //   // console.log(`${advantageRolls[i]} is greater than 1`);
     // }
