@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:root {
+    --black: #000000;
+    --magenta: #80475E;
+    --white: #ffffff;
+}
+
+#dice_bag {
+    width: 50%;
+    height: 50%;
+}
