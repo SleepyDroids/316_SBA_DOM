@@ -57,6 +57,12 @@ const diceBag = document.getElementById("dice_bag");
 const bodyEl = document.querySelector("body");
 const addDiv = document.createElement("div");
 
+bodyEl.prepend(document.createElement("h1"));
+bodyEl.firstChild.id = "title_text";
+
+const titleText = document.querySelector("#title_text");
+titleText.textContent = "Roll for initiative!";
+
 bodyEl.style.backgroundColor = "var(--magenta)";
 diceBag.style.border = "2px solid var(--black)";
 diceBag.style.display = "flex";
@@ -116,46 +122,53 @@ rollLog.style.width = "300px";
 rollLog.style.height = "200px";
 rollLog.style.border = "1px solid red";
 
+// creating the document fragment
 const docFrag = document.createDocumentFragment();
-
-let rollItem = document.createElement("h4");
-rollItem.textContent = "Test";
-
-docFrag.appendChild(rollItem);
-// console.log(docFrag);
-rollLog.appendChild(docFrag);
 
 // EVENT LISTENERS ********************************************************************************************************
 rollBtn.addEventListener("click", () => {
   const diceSound = new Audio("./src/dice-roll-sound.mp3");
   diceSound.play();
+  const rollItem = document.createElement("h4");
   // timeout set to 1 sec, so that the full audio plays (its duration is 1 sec)
   // before the die value is displayed
   // so it's like the user rolled first and THEN you see your dice roll
   d20.classList.toggle("shake_animation");
+
   setTimeout(function () {
     d20.firstChild.textContent = `${rollDie()}`;
     d20.classList.remove("shake_animation");
+    rollItem.textContent = d20.firstChild.textContent;
+    docFrag.appendChild(rollItem);
+    rollLog.appendChild(docFrag);
   }, 1000);
 }); // end of normal D20 roll event handler
 
 advantageBtn.addEventListener("click", () => {
   const diceSound = new Audio("./src/dice-roll-sound.mp3");
   diceSound.play();
+  const rollItem = document.createElement("h4");
   d20.classList.toggle("shake_animation");
   setTimeout(function () {
     d20.firstChild.textContent = `${rollAdvantage()}`;
     d20.classList.remove("shake_animation");
+    rollItem.textContent = d20.firstChild.textContent;
+    docFrag.appendChild(rollItem);
+    rollLog.appendChild(docFrag);
   }, 1000);
 }); // end of advantage D20 roll event handler
 
 disadvantageBtn.addEventListener("click", () => {
   const diceSound = new Audio("./src/dice-roll-sound.mp3");
   diceSound.play();
+  const rollItem = document.createElement("h4");
   d20.classList.toggle("shake_animation");
   setTimeout(function () {
     d20.firstChild.textContent = `${rollDisadvantage()}`;
     d20.classList.remove("shake_animation");
+    rollItem.textContent = d20.firstChild.textContent;
+    docFrag.appendChild(rollItem);
+    rollLog.appendChild(docFrag);
   }, 1000);
 }); // end of advantage D20 roll event handler
 
