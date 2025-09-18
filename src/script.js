@@ -66,7 +66,7 @@ diceBag.firstElementChild.setAttribute("id", "deeTwenty");
 
 const d20 = document.getElementById("deeTwenty");
 d20.appendChild(document.createElement("h1"));
-d20.firstChild.textContent = "0";
+d20.firstChild.textContent = 0;
 
 d20.style.border = "1px solid var(--white)";
 d20.style.width = "100px";
@@ -94,33 +94,52 @@ document.querySelector("#dice_bag :nth-child(5)").id = "resetBtn";
 document.querySelector("#dice_bag :nth-child(4)").id = "disadvantageBtn";
 document.querySelector("#dice_bag :nth-child(3)").id = "advantageBtn";
 
+// adding IDs to the new buttons to be able to easily attach an event listener to each button
 const disadvantageBtn = document.getElementById("disadvantageBtn");
 const advantageBtn = document.getElementById("advantageBtn");
 const resetBtn = document.getElementById("resetBtn");
 
+// FRAG ELEMENT ***********************************************************
+
+// first I am going to set up a div to house the dice rolls I wish to keep
+bodyEl.appendChild(document.createElement("div"));
+bodyEl.lastChild.id = "roll_log";
+const rollLog = document.querySelector("#roll_log");
+
+rollLog.style.width = "300px";
+rollLog.style.height = "200px";
+rollLog.style.border = "1px solid red";
+
+const docFrag = document.createDocumentFragment(); 
+
+let rollItem = document.createElement("li");
+rollItem.textContent = "Test";
+
+docFrag.appendChild(rollItem);
+// console.log(docFrag);
+rollLog.appendChild(docFrag);
+
+
 // EVENT LISTENERS ********************************************************************************************************
 rollBtn.addEventListener("click", () => {
-  if (d20.firstChild.textContent = "0")
   d20.firstChild.textContent = `${rollDie()}`;
 }); // end of normal D20 roll event handler
 
 advantageBtn.addEventListener("click", () => {
-  isAdvantage = true;
-  if (isAdvantage) {
+  if (!isAdvantage) {
     d20.firstChild.textContent = `${rollAdvantage()}`;
   }
 }); // end of advantage D20 roll event handler
 
 disadvantageBtn.addEventListener("click", () => {
-  isDisadvantage = true;
-  if (isDisadvantage) {
+  if (!isDisadvantage) {
     d20.firstChild.textContent = `${rollDisadvantage()}`;
   }
 }); // end of advantage D20 roll event handler
 
 resetBtn.addEventListener("click", () => {
   if(d20.firstChild.textContent > 0) {
-    d20.firstChild.textContent = "0";
+    d20.firstChild.textContent = 0;
   }
 }); // end of reset button event handler 
 
@@ -134,8 +153,6 @@ function rollDie() {
   }
   return randomNum;
 }
-
-console.log(rollDie());
 
 // START OF ROLL WITH ADVANTAGE FUNCTION *********************
 function rollAdvantage() {
@@ -177,8 +194,6 @@ function rollAdvantage() {
   return diceTray;
 } // end of rollAdvantage function
 
-console.log(rollAdvantage());
-
 // START OF ROLL WITH DISADVANTAGE FUNCTION *********************
 function rollDisadvantage() {
   disadvantageRolls = [];
@@ -202,5 +217,3 @@ function rollDisadvantage() {
 
   return diceTray;
 } // end of rollDisadvantage function
-
-console.log(rollDisadvantage());
