@@ -1,4 +1,5 @@
 // Jacqueline LaFontaine
+// 316 SBA for the Documnet Object Model
 
 /*
 GOAL OF THIS PROJECT:
