@@ -1,3 +1,5 @@
+// Jacqueline LaFontaine
+
 /*
 GOAL OF THIS PROJECT:
 Create a clickable D20 die that gives a random die number on each click and also
@@ -42,7 +44,7 @@ EVENTUALLY:
 // depending if rolling with advantage or disadvantage
 // as in if this number is higher than lowerInteger, return higherInteger
 
-const diceRolls = []; // array to store up to 5 previous dice rolls
+const diceRolls = []; // array to store up to 10 previous dice rolls
 let initialRoll = 0; // initialized at 0
 let isAdvantage = false; // start off false
 let isDisadvantage = false; // start off false
@@ -99,7 +101,7 @@ const disadvantageBtn = document.getElementById("disadvantageBtn");
 const advantageBtn = document.getElementById("advantageBtn");
 const resetBtn = document.getElementById("resetBtn");
 
-// FRAG ELEMENT ***********************************************************
+// DOCUMENT FRAGMENT ********************************************************************************************************
 
 // first I am going to set up a div to house the dice rolls I wish to keep
 bodyEl.appendChild(document.createElement("div"));
@@ -112,7 +114,7 @@ rollLog.style.border = "1px solid red";
 
 const docFrag = document.createDocumentFragment(); 
 
-let rollItem = document.createElement("li");
+let rollItem = document.createElement("h4");
 rollItem.textContent = "Test";
 
 docFrag.appendChild(rollItem);
@@ -122,6 +124,9 @@ rollLog.appendChild(docFrag);
 
 // EVENT LISTENERS ********************************************************************************************************
 rollBtn.addEventListener("click", () => {
+  const diceSound = new Audio("./src/dice-roll-sound.mp3");
+  diceSound.play();
+  
   d20.firstChild.textContent = `${rollDie()}`;
 }); // end of normal D20 roll event handler
 
@@ -138,9 +143,8 @@ disadvantageBtn.addEventListener("click", () => {
 }); // end of advantage D20 roll event handler
 
 resetBtn.addEventListener("click", () => {
-  if(d20.firstChild.textContent > 0) {
-    d20.firstChild.textContent = 0;
-  }
+  // refreshes the page / returns to the default value of zero
+  window.location.reload();
 }); // end of reset button event handler 
 
 // FUNCTIONS ********************************************************************************************************
