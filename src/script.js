@@ -125,11 +125,12 @@ rollLog.style.border = "1px solid red";
 // creating the document fragment
 const docFrag = document.createDocumentFragment();
 
+
 // EVENT LISTENERS ********************************************************************************************************
 rollBtn.addEventListener("click", () => {
   const diceSound = new Audio("./src/dice-roll-sound.mp3");
   diceSound.play();
-  const rollItem = document.createElement("h4");
+  const rollItem = document.createElement("li");
   // timeout set to 1 sec, so that the full audio plays (its duration is 1 sec)
   // before the die value is displayed
   // so it's like the user rolled first and THEN you see your dice roll
@@ -147,7 +148,7 @@ rollBtn.addEventListener("click", () => {
 advantageBtn.addEventListener("click", () => {
   const diceSound = new Audio("./src/dice-roll-sound.mp3");
   diceSound.play();
-  const rollItem = document.createElement("h4");
+  const rollItem = document.createElement("li");
   d20.classList.toggle("shake_animation");
   setTimeout(function () {
     d20.firstChild.textContent = `${rollAdvantage()}`;
@@ -161,7 +162,7 @@ advantageBtn.addEventListener("click", () => {
 disadvantageBtn.addEventListener("click", () => {
   const diceSound = new Audio("./src/dice-roll-sound.mp3");
   diceSound.play();
-  const rollItem = document.createElement("h4");
+  const rollItem = document.createElement("li");
   d20.classList.toggle("shake_animation");
   setTimeout(function () {
     d20.firstChild.textContent = `${rollDisadvantage()}`;
