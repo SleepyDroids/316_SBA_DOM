@@ -59,9 +59,9 @@ const addDiv = document.createElement("div");
 bodyEl.style.backgroundColor = "var(--magenta)";
 diceBag.style.border = "2px solid var(--black)";
 diceBag.style.display = "flex";
-diceBag.style.justifyContent = "space-evenly";
+diceBag.style.justifyContent = "center";
 diceBag.style.alignItems = "center";
-diceBag.style.flexFlow = "row wrap";
+diceBag.style.flexFlow = "column wrap";
 
 diceBag.prepend(addDiv);
 diceBag.firstElementChild.setAttribute("id", "deeTwenty");
@@ -70,14 +70,17 @@ const d20 = document.getElementById("deeTwenty");
 d20.appendChild(document.createElement("h1"));
 d20.firstChild.textContent = 0;
 
+d20.style.backgroundImage = "url(./src/dice-svg.svg)";
 d20.style.border = "1px solid var(--white)";
-d20.style.width = "100px";
-d20.style.height = "100px";
-d20.style.borderRadius = "50%";
+d20.style.width = "165px";
+d20.style.height = "165px";
+d20.style.margin = "25px";
 d20.style.display = "flex";
 d20.style.justifyContent = "center";
 d20.style.alignItems = "center";
 d20.style.flexFlow = "column wrap";
+
+const visibleNum = d20.firstChild;
 
 // Creating additional buttons for more functionality
 const addBtn = document.createElement("button");
@@ -112,7 +115,7 @@ rollLog.style.width = "300px";
 rollLog.style.height = "200px";
 rollLog.style.border = "1px solid red";
 
-const docFrag = document.createDocumentFragment(); 
+const docFrag = document.createDocumentFragment();
 
 let rollItem = document.createElement("h4");
 rollItem.textContent = "Test";
@@ -121,31 +124,44 @@ docFrag.appendChild(rollItem);
 // console.log(docFrag);
 rollLog.appendChild(docFrag);
 
-
 // EVENT LISTENERS ********************************************************************************************************
 rollBtn.addEventListener("click", () => {
   const diceSound = new Audio("./src/dice-roll-sound.mp3");
   diceSound.play();
-  
-  d20.firstChild.textContent = `${rollDie()}`;
+  // timeout set to 1 sec, so that the full audio plays (its duration is 1 sec)
+  // before the die value is displayed
+  // so it's like the user rolled first and THEN you see your dice roll
+  d20.classList.toggle("shake_animation");
+  setTimeout(function () {
+    d20.firstChild.textContent = `${rollDie()}`;
+    d20.classList.remove("shake_animation");
+  }, 1000);
 }); // end of normal D20 roll event handler
 
 advantageBtn.addEventListener("click", () => {
-  if (!isAdvantage) {
+  const diceSound = new Audio("./src/dice-roll-sound.mp3");
+  diceSound.play();
+  d20.classList.toggle("shake_animation");
+  setTimeout(function () {
     d20.firstChild.textContent = `${rollAdvantage()}`;
-  }
+    d20.classList.remove("shake_animation");
+  }, 1000);
 }); // end of advantage D20 roll event handler
 
 disadvantageBtn.addEventListener("click", () => {
-  if (!isDisadvantage) {
+  const diceSound = new Audio("./src/dice-roll-sound.mp3");
+  diceSound.play();
+  d20.classList.toggle("shake_animation");
+  setTimeout(function () {
     d20.firstChild.textContent = `${rollDisadvantage()}`;
-  }
+    d20.classList.remove("shake_animation");
+  }, 1000);
 }); // end of advantage D20 roll event handler
 
 resetBtn.addEventListener("click", () => {
   // refreshes the page / returns to the default value of zero
   window.location.reload();
-}); // end of reset button event handler 
+}); // end of reset button event handler
 
 // FUNCTIONS ********************************************************************************************************
 function rollDie() {
