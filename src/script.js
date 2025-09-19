@@ -62,13 +62,19 @@ bodyEl.firstChild.id = "title_text";
 
 const titleText = document.querySelector("#title_text");
 titleText.textContent = "Roll for initiative!";
+// use input elements to allow user to put their
+// character name and class 
+// so like "Bob the rogue has rolled."
+// so an input for name of character and an input for character class
 
 bodyEl.style.backgroundColor = "var(--magenta)";
 diceBag.style.border = "2px solid var(--black)";
-diceBag.style.display = "flex";
-diceBag.style.justifyContent = "center";
-diceBag.style.alignItems = "center";
-diceBag.style.flexFlow = "column wrap";
+diceBag.style.display = "grid";
+diceBag.style.placeContent = "center";
+// diceBag.style.display = "flex";
+// diceBag.style.justifyContent = "center";
+// diceBag.style.alignItems = "center";
+// diceBag.style.flexFlow = "column wrap";
 
 diceBag.prepend(addDiv);
 diceBag.firstElementChild.setAttribute("id", "deeTwenty");
@@ -121,6 +127,8 @@ const rollLog = document.querySelector("#roll_log");
 rollLog.style.width = "300px";
 rollLog.style.height = "200px";
 rollLog.style.border = "1px solid red";
+rollLog.style.display = "grid";
+rollLog.style.placeContent = "center";
 
 // creating the document fragment
 const docFrag = document.createDocumentFragment();

@@ -5,7 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
-      font-family: "Jacquard 24", system-ui;
+  font-family: "Pirata One", system-ui;
   font-weight: 400;
   font-style: normal;
 }
@@ -14,6 +14,10 @@ body {
     --black: #000000;
     --magenta: #80475E;
     --white: #ffffff;
+}
+
+svg * {
+  vector-effect: non-scaling-stroke;
 }
 
 #dice_bag {
