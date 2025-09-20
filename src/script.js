@@ -133,7 +133,8 @@ rollLog.style.height = "200px";
 rollLog.style.border = "1px solid red";
 rollLog.style.display = "grid";
 rollLog.style.placeContent = "center";
-rollLog.style.padding = ".5rem";
+// rollLog.style.alignContet = "center";
+rollLog.style.padding = ".15px";
 
 // creating the document fragment
 const docFrag = document.createDocumentFragment();

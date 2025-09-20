@@ -5,7 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
-  font-family: "Pirata One", system-ui;
+  font-family: "Almendra SC", serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -29,6 +29,11 @@ svg * {
 .shake_animation {
   animation: shake 0.5s;
   animation-iteration-count: infinite;
+}
+
+.roll_item {
+  list-style-type: none;
+  background-color: #ffffff;
 }
 
 @keyframes shake {
