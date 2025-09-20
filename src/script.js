@@ -62,6 +62,8 @@ bodyEl.firstChild.id = "title_text";
 
 const titleText = document.querySelector("#title_text");
 titleText.textContent = "Roll for initiative!";
+
+
 // use input elements to allow user to put their
 // character name and class
 // so like "Bob the rogue has rolled."
@@ -268,3 +270,70 @@ function rollDisadvantage() {
 
   return diceTray;
 } // end of rollDisadvantage function
+
+// START OF ADD CHARACTER NAME FUNCTION *********************
+const nameForm = document.querySelectorAll([name="nameForm"])
+// const charName = form.elements["characterName"];
+
+const charActionText =
+
+function addCharName() {
+  const characterName = cInput.value;
+
+  const notValidPattern = /^[^!@#$%^&*()+=?<>]*$/;
+  if (!notValidPattern.test(characterName.value)) {
+    alert(
+      "Character name can only contain letters and numbers (no spaces or special characters)."
+    );
+    characterName.focus();
+    return false;
+  }
+
+  if (characterName === "") return; // guard against not inserting a character name
+
+  // need to edit this to fit the text content I am attempting to change
+  cList.appendChild(document.createElement("li")).textContent = characterName;
+  cInput.value = "";
+  cInput.focus(); 
+} // end of addCharName function
+
+
+function validateName(name) {
+  if (name.value === "") {
+    alert("Please provide a name.");
+    name.focus();
+    return false;
+  } else if (name.value.length < 4) {
+    alert("Please input at least four characters long");
+    name.focus();
+    return false;
+  }
+
+  // setting the first input as variable
+  let firstChar = name.value[0];
+  let hasDifferent = false;
+  // loops through the string input
+  // if they're different, break from loop
+  for (let char of name.value) {
+    if (char !== firstChar) {
+      hasDifferent = true;
+      break;
+    }
+  }
+  // if not different, alert the user
+  if (!hasDifferent) {
+    alert("Username must contain at least two unique characters.");
+    return false;
+  }
+
+  const notValidPattern = /^[^!@#$%^&*()+=?<>]*$/;
+  if (!notValidPattern.test(name.value)) {
+    alert(
+      "Username can only contain letters and numbers (no spaces or special characters)."
+    );
+    name.focus();
+    return false;
+  }
+
+  return name.value; // truthy
+}

@@ -13,6 +13,17 @@
     />
   </head>
   <body>
+     <form action="#" name="nameForm" method="POST">
+      <input
+        type="text"
+        name="characterName"
+        placeholder="Enter your character's name here!"
+        pattern="^[a-zA-Z]+"
+        title="Please start your username with a letter from a-z."
+        required
+      />
+      </form>
+
     <div id="dice_bag">
       <button id="roll_btn">Roll for initiative!</button>
     </div>
