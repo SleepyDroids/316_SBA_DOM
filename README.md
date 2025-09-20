@@ -40,29 +40,7 @@ Last, but not least: added a dice sound and dice animation upon button clicks fo
 # @SleepyDroids 🤖
 
 You can visit the repo for this project by clicking [here](https://github.com/SleepyDroids/316_SBA_DOM). For all other works, please [click here](https://github.com/SleepyDroids). ✨
-## API Reference
 
-#### Get all items
+[SVG Credit](https://freesvg.org/20-sided-dice) and [Dice Roll Audio Credit](https://elevenlabs.io/sound-effects/dice-roll)  
 
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
 

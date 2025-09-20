@@ -63,14 +63,13 @@ bodyEl.firstChild.id = "title_text";
 const titleText = document.querySelector("#title_text");
 titleText.textContent = "Roll for initiative!";
 
-
 // use input elements to allow user to put their
 // character name and class
 // so like "Bob the rogue has rolled."
 // so an input for name of character and an input for character class
 
 bodyEl.style.backgroundColor = "var(--magenta)";
-diceBag.style.border = "2px solid var(--black)";
+// diceBag.style.border = "2px solid var(--black)";
 diceBag.style.display = "grid";
 diceBag.style.placeContent = "center";
 // diceBag.style.display = "flex";
@@ -86,7 +85,7 @@ d20.appendChild(document.createElement("h1"));
 d20.firstChild.textContent = 0;
 
 d20.style.backgroundImage = "url(./src/dice-svg.svg)";
-d20.style.border = "1px solid var(--white)";
+// d20.style.border = "1px solid var(--white)";
 d20.style.width = "165px";
 d20.style.height = "165px";
 d20.style.margin = "25px";
@@ -132,7 +131,7 @@ const ulList = document.querySelector("#ul_list");
 
 rollLog.style.width = "300px";
 rollLog.style.height = "200px";
-rollLog.style.border = "1px solid red";
+// rollLog.style.border = "1px solid red";
 rollLog.style.display = "grid";
 rollLog.style.placeContent = "center";
 // rollLog.style.alignContet = "center";
@@ -282,19 +281,20 @@ function addCharName() {
   const characterName = nameInput.value;
 
   const notValidPattern = /^[^!@#$%^&*()+=?<>]*$/;
-  if (!notValidPattern.test(characterName.value)) {
+  // don't need the .value since it is already stored in the characterName
+  if (!notValidPattern.test(characterName)) {
     // might be able to modify an attribute through here?
     alert(
-      "Character name can only contain letters and numbers (no spaces or special characters)."
+      "Character name can only contain letters and numbers (no special characters)."
     );
-    characterName.focus();
+    nameInput.focus();
     return false;
   }
 
   if (characterName === "") return; // guard against not inserting a character name
   // although I feel scandalized having an if statement without curly brackets
-
-    titleText.textContent = `Roll for initiative, ${characterName}!`;
+  titleText.textContent = `Roll for initiative, ${characterName}!`;
 } // end of addCharName function
 
-nameEnter.addEventListener("click", addCharName());
+// pass by reference to the function instead of calling the function immediately
+nameEnter.addEventListener("click", addCharName);
