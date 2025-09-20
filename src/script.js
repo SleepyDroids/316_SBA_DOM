@@ -96,8 +96,6 @@ d20.style.justifyContent = "center";
 d20.style.alignItems = "center";
 d20.style.flexFlow = "column wrap";
 
-
-
 // Creating additional buttons for more functionality
 const addBtn = document.createElement("button");
 
@@ -160,40 +158,36 @@ rollBtn.addEventListener("click", () => {
     visibleNum.textContent = `${rollDie()}`;
     d20.classList.remove("shake_animation");
     rollItem.textContent = visibleNum.textContent;
-        docFrag.appendChild(rollItem);
+    docFrag.appendChild(rollItem);
     ulList.appendChild(docFrag);
-// ***************** testing something ****************************
-/*
+    /*
 Essentially, I am trying to create a for loop here that iterates through all the items
 // aka dice rolls in the list and once it hits ten
 // stop the user from making more dice rolls
 // It currently doesn't stop the user at 10 so I'll need time to trouble shoot getting it 
 // to do so at 10
 */
-// let count = 0; //outside the loop so it doesn't keep resetting the count to 0
-//     for (let i = 0; i < ulList.children.length; i++) {
+    // let count = 0; //outside the loop so it doesn't keep resetting the count to 0
+    //     for (let i = 0; i < ulList.children.length; i++) {
 
-//       // checks for existing li (rolls) in the list (roll log)
-//     if (ulList.children[i].tagName === "LI") count++; 
+    //       // checks for existing li (rolls) in the list (roll log)
+    //     if (ulList.children[i].tagName === "LI") count++;
 
-//     console.log(count);
+    //     console.log(count);
 
-//     if (count >= 10) {
-//       alert("You reached the maximum number of rolls.");
-//       rollBtn.disabled = true;
-//       return; // do not add if the user is a 10 dice rolls
-//     }
+    //     if (count >= 10) {
+    //       alert("You reached the maximum number of rolls.");
+    //       rollBtn.disabled = true;
+    //       return; // do not add if the user is a 10 dice rolls
+    //     }
 
-//       if (count < 10) {
-//     docFrag.appendChild(rollItem);
-//     ulList.appendChild(docFrag);
-//       }
+    //       if (count < 10) {
+    //     docFrag.appendChild(rollItem);
+    //     ulList.appendChild(docFrag);
+    //       }
 
-//   }
-
+    //   }
   }, 1000);
-
-
 }); // end of normal D20 roll event handler
 
 advantageBtn.addEventListener("click", () => {
