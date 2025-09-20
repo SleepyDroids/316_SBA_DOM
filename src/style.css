@@ -35,6 +35,8 @@ svg * {
 .roll_item {
   list-style-type: none;
   background-color: #ffffff;
+  padding: 3px;
+  text-align: center;
 }
 
 @keyframes shake {

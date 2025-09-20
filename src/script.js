@@ -83,7 +83,8 @@ diceBag.firstElementChild.setAttribute("id", "deeTwenty");
 
 const d20 = document.getElementById("deeTwenty");
 d20.appendChild(document.createElement("h1"));
-d20.firstChild.textContent = 0;
+const visibleNum = d20.firstChild;
+visibleNum.textContent = 0;
 
 d20.style.backgroundImage = "url(./src/dice-svg.svg)";
 // d20.style.border = "1px solid var(--white)";
@@ -95,7 +96,7 @@ d20.style.justifyContent = "center";
 d20.style.alignItems = "center";
 d20.style.flexFlow = "column wrap";
 
-const visibleNum = d20.firstChild;
+
 
 // Creating additional buttons for more functionality
 const addBtn = document.createElement("button");
@@ -132,7 +133,6 @@ rollLog.firstChild.id = "ul_list";
 // also if I need to iterate through it
 
 const ulList = document.querySelector("#ul_list");
-console.log(ulList);
 
 rollLog.style.width = "300px";
 rollLog.style.height = "200px";
@@ -157,29 +157,39 @@ rollBtn.addEventListener("click", () => {
   d20.classList.toggle("shake_animation");
 
   setTimeout(function () {
-    d20.firstChild.textContent = `${rollDie()}`;
+    visibleNum.textContent = `${rollDie()}`;
     d20.classList.remove("shake_animation");
-    rollItem.textContent = d20.firstChild.textContent;
+    rollItem.textContent = visibleNum.textContent;
         docFrag.appendChild(rollItem);
     ulList.appendChild(docFrag);
 // ***************** testing something ****************************
+/*
+Essentially, I am trying to create a for loop here that iterates through all the items
+// aka dice rolls in the list and once it hits ten
+// stop the user from making more dice rolls
+// It currently doesn't stop the user at 10 so I'll need time to trouble shoot getting it 
+// to do so at 10
+*/
+// let count = 0; //outside the loop so it doesn't keep resetting the count to 0
+//     for (let i = 0; i < ulList.children.length; i++) {
 
-    for (let i = 0; i < ulList.children; i++) {
-      let count = 0;
+//       // checks for existing li (rolls) in the list (roll log)
+//     if (ulList.children[i].tagName === "LI") count++; 
 
-    if (rollItem.tagName = "LI") {
-      count++;
-    } 
+//     console.log(count);
 
-    if (count >= 10) {
-      alert("You reached the maximum number of rolls.");
-    }
+//     if (count >= 10) {
+//       alert("You reached the maximum number of rolls.");
+//       rollBtn.disabled = true;
+//       return; // do not add if the user is a 10 dice rolls
+//     }
 
-      if (count < 10) {
+//       if (count < 10) {
+//     docFrag.appendChild(rollItem);
+//     ulList.appendChild(docFrag);
+//       }
 
-      }
-
-  }
+//   }
 
   }, 1000);
 
@@ -193,9 +203,9 @@ advantageBtn.addEventListener("click", () => {
   rollItem.classList.add("roll_item");
   d20.classList.toggle("shake_animation");
   setTimeout(function () {
-    d20.firstChild.textContent = `${rollAdvantage()}`;
+    visibleNum.textContent = `${rollAdvantage()}`;
     d20.classList.remove("shake_animation");
-    rollItem.textContent = d20.firstChild.textContent;
+    rollItem.textContent = visibleNum.textContent;
     docFrag.appendChild(rollItem);
     ulList.appendChild(docFrag);
   }, 1000);
@@ -208,9 +218,9 @@ disadvantageBtn.addEventListener("click", () => {
   rollItem.classList.add("roll_item");
   d20.classList.toggle("shake_animation");
   setTimeout(function () {
-    d20.firstChild.textContent = `${rollDisadvantage()}`;
+    visibleNum.textContent = `${rollDisadvantage()}`;
     d20.classList.remove("shake_animation");
-    rollItem.textContent = d20.firstChild.textContent;
+    rollItem.textContent = visibleNum.textContent;
     docFrag.appendChild(rollItem);
     ulList.appendChild(docFrag);
   }, 1000);
