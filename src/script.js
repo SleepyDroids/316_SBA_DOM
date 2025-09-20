@@ -61,6 +61,7 @@ bodyEl.prepend(document.createElement("h1"));
 bodyEl.firstChild.id = "title_text";
 
 const titleText = document.querySelector("#title_text");
+titleText.style.fontSize = "2.5rem";
 titleText.textContent = "Roll for initiative!";
 
 // use input elements to allow user to put their
@@ -127,7 +128,11 @@ const rollLog = document.querySelector("#roll_log");
 rollLog.appendChild(document.createElement("ul"));
 rollLog.firstChild.id = "ul_list";
 
+// In case I need to edit the ul list separately from the li
+// also if I need to iterate through it
+
 const ulList = document.querySelector("#ul_list");
+console.log(ulList);
 
 rollLog.style.width = "300px";
 rollLog.style.height = "200px";
@@ -135,7 +140,7 @@ rollLog.style.height = "200px";
 rollLog.style.display = "grid";
 rollLog.style.placeContent = "center";
 // rollLog.style.alignContet = "center";
-rollLog.style.padding = ".15px";
+rollLog.style.padding = "5px";
 
 // creating the document fragment
 const docFrag = document.createDocumentFragment();
@@ -155,9 +160,30 @@ rollBtn.addEventListener("click", () => {
     d20.firstChild.textContent = `${rollDie()}`;
     d20.classList.remove("shake_animation");
     rollItem.textContent = d20.firstChild.textContent;
-    docFrag.appendChild(rollItem);
+        docFrag.appendChild(rollItem);
     ulList.appendChild(docFrag);
+// ***************** testing something ****************************
+
+    for (let i = 0; i < ulList.children; i++) {
+      let count = 0;
+
+    if (rollItem.tagName = "LI") {
+      count++;
+    } 
+
+    if (count >= 10) {
+      alert("You reached the maximum number of rolls.");
+    }
+
+      if (count < 10) {
+
+      }
+
+  }
+
   }, 1000);
+
+
 }); // end of normal D20 roll event handler
 
 advantageBtn.addEventListener("click", () => {
@@ -297,4 +323,6 @@ function addCharName() {
 } // end of addCharName function
 
 // pass by reference to the function instead of calling the function immediately
+// because before the function would run immediately before my title text loaded in
+// so nothing changed when I tried entering a name because technically nothing loaded in (the h1 in this case)
 nameEnter.addEventListener("click", addCharName);
