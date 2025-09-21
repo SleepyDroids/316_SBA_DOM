@@ -34,7 +34,7 @@ Order in which the D20 roll should function:
 EVENTUALLY: 
 1. Add a functionality that considers roll with advantage or disadvantage (toggle?)
 2. Add more dice types/color options
-3. Also indicates on previous dice rolls whether or not the roll was done with advantage or disadvantage
+3. Also indicates on previous dice rolls whether or not the roll was done with advantage or disadvantage with a tooltip?
 */
 
 // Can use this function to roll a d20 and also in the case of advantage
@@ -61,9 +61,10 @@ bodyEl.prepend(document.createElement("h1"));
 bodyEl.firstChild.id = "title_text";
 
 const titleText = document.querySelector("#title_text");
-titleText.style.fontSize = "3.5rem";
+titleText.style.fontSize = "3rem";
 titleText.style.color = "var(--white)";
 titleText.style.letterSpacing = "3px";
+titleText.style.textShadow = "3px 3px var(--black)";
 titleText.textContent = "Roll for initiative!";
 
 // use input elements to allow user to put their
@@ -90,6 +91,8 @@ d20.appendChild(document.createElement("h1"));
 const visibleNum = d20.firstChild;
 visibleNum.textContent = 0;
 visibleNum.style.marginTop = "28px";
+visibleNum.style.color = "var(--white)";
+visibleNum.style.textShadow = "3px 3px var(--black)";
 
 d20.style.backgroundImage = "url(./src/dice-svg.svg)";
 // d20.style.border = "1px solid var(--white)";
@@ -123,6 +126,24 @@ const disadvantageBtn = document.getElementById("disadvantageBtn");
 const advantageBtn = document.getElementById("advantageBtn");
 const resetBtn = document.getElementById("resetBtn");
 
+// styling the buttons
+const allButtonsElement = document.getElementsByTagName("button"); // grabs an HTML Collection
+const allButtonsArray = [...allButtonsElement]; // makes a copy of the HTML collection, turns it into an array
+// console.log(allButtonsElement);
+// console.log(allButtonsArray);
+
+// iterating through the button elements to style them
+allButtonsArray.forEach((button) => {
+  button.style.backgroundColor = "var(--dark-green)";
+  button.style.padding = "5px 12px";
+  button.style.fontFamily = "inherit";
+  button.style.fontSize = "1.1rem";
+  button.style.color = "var(--white)";
+  button.style.border = "none";
+  button.style.borderRadius = "10%";
+  button.style.margin = "2px auto";
+});
+
 // DOCUMENT FRAGMENT ********************************************************************************************************
 
 // first I am going to set up a div to house the dice rolls I wish to keep
@@ -135,12 +156,17 @@ rollLog.firstChild.id = "ul_list";
 rollLog.prepend(document.createElement("h3"));
 rollLog.firstChild.textContent = "Roll Log: ";
 
+// making adjustments to the Roll Log h3 text
+rollLog.firstChild.style.fontSize = "1.75rem";
+rollLog.firstChild.style.color = "var(--white)";
+rollLog.firstChild.style.textShadow = "3px 3px var(--black)";
+
 // In case I need to edit the ul list separately from the li
 // also if I need to iterate through it
 
 const ulList = document.querySelector("#ul_list");
 
-// to make the list items appear side by side 
+// to make the list items appear side by side
 ulList.style.display = "flex";
 ulList.style.justifyContent = "center";
 ulList.style.alignItems = "center";
@@ -154,7 +180,7 @@ ulList.style.margin = "0";
 rollLog.style.width = "400px";
 rollLog.style.height = "auto";
 rollLog.style.display = "flex";
-rollLog.style.border = "1px solid red";
+// rollLog.style.border = "1px solid red";
 
 // creating the document fragment
 const docFrag = document.createDocumentFragment();
@@ -264,7 +290,7 @@ function rollAdvantage() {
 
   // push the two rolls into the array
   advantageRolls.push(roll1, roll2);
-  console.log(advantageRolls); // showing me the two rolls my rollDie() function produced
+  // console.log(advantageRolls); // showing me the two rolls my rollDie() function produced
 
   for (let i = 0; i < advantageRolls.length; i++) {
     // Updated: ultimately didn't need this additional logic to make this function work
@@ -304,7 +330,7 @@ function rollDisadvantage() {
 
   // push the two rolls into the array
   disadvantageRolls.push(roll1, roll2);
-  console.log(disadvantageRolls);
+  // console.log(disadvantageRolls);
 
   for (let i = 0; i < disadvantageRolls.length; i++) {
     if (disadvantageRolls[i] < diceTray) {
@@ -319,8 +345,12 @@ function rollDisadvantage() {
 // START OF ADD CHARACTER NAME FUNCTION && EVENT LISTENER *********************
 const nameInput = document.getElementById("name_input");
 console.log(nameInput); // making sure I'm grabbing the right element
+nameInput.style.appearance = "none";
+nameInput.style.fontFamily = "inherit";
+nameInput.style.fontSize = "1.3rem";
+nameInput.style.border = "none";
 const nameEnter = document.getElementById("add_name_btn");
-console.log(nameEnter);
+// console.log(nameEnter);
 
 function addCharName() {
   // stashing the value of the name into a variable
@@ -346,3 +376,16 @@ function addCharName() {
 // because before the function would run immediately before my title text loaded in
 // so nothing changed when I tried entering a name because technically nothing loaded in (the h1 in this case)
 nameEnter.addEventListener("click", addCharName);
+
+// ADDING A FAVICON USING JAVASCRIPT FOR SCIENCE!!! *********************
+
+function addFavicon(img) {
+  // grabbing the head element since that's where the favicon link normally goes
+  let head = document.querySelector("head");
+  let link = document.createElement("link");
+  link.setAttribute("rel", "shortcut icon");
+  link.setAttribute("href", img);
+  head.appendChild(link);
+}
+
+addFavicon("./src/icons8-dice-favicon-32.png");
