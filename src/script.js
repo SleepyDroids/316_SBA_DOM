@@ -61,7 +61,9 @@ bodyEl.prepend(document.createElement("h1"));
 bodyEl.firstChild.id = "title_text";
 
 const titleText = document.querySelector("#title_text");
-titleText.style.fontSize = "2.5rem";
+titleText.style.fontSize = "3.5rem";
+titleText.style.color = "var(--white)";
+titleText.style.letterSpacing = "3px";
 titleText.textContent = "Roll for initiative!";
 
 // use input elements to allow user to put their
@@ -69,10 +71,12 @@ titleText.textContent = "Roll for initiative!";
 // so like "Bob the rogue has rolled."
 // so an input for name of character and an input for character class
 
-bodyEl.style.backgroundColor = "var(--magenta)";
+bodyEl.style.backgroundColor = "var(--dark-green)";
+bodyEl.style.backgroundImage = "url('./src/DnD-road-bg.svg')";
 // diceBag.style.border = "2px solid var(--black)";
 diceBag.style.display = "grid";
 diceBag.style.placeContent = "center";
+// if you couldn't tell, I was fighting with flexbox
 // diceBag.style.display = "flex";
 // diceBag.style.justifyContent = "center";
 // diceBag.style.alignItems = "center";
@@ -85,6 +89,7 @@ const d20 = document.getElementById("deeTwenty");
 d20.appendChild(document.createElement("h1"));
 const visibleNum = d20.firstChild;
 visibleNum.textContent = 0;
+visibleNum.style.marginTop = "28px";
 
 d20.style.backgroundImage = "url(./src/dice-svg.svg)";
 // d20.style.border = "1px solid var(--white)";
@@ -127,18 +132,29 @@ const rollLog = document.querySelector("#roll_log");
 rollLog.appendChild(document.createElement("ul"));
 rollLog.firstChild.id = "ul_list";
 
+rollLog.prepend(document.createElement("h3"));
+rollLog.firstChild.textContent = "Roll Log: ";
+
 // In case I need to edit the ul list separately from the li
 // also if I need to iterate through it
 
 const ulList = document.querySelector("#ul_list");
 
-rollLog.style.width = "300px";
-rollLog.style.height = "200px";
-// rollLog.style.border = "1px solid red";
-rollLog.style.display = "grid";
-rollLog.style.placeContent = "center";
-// rollLog.style.alignContet = "center";
-rollLog.style.padding = "5px";
+// to make the list items appear side by side 
+ulList.style.display = "flex";
+ulList.style.justifyContent = "center";
+ulList.style.alignItems = "center";
+ulList.style.flexFlow = "row wrap";
+ulList.style.alignContent = "flex start";
+ulList.style.listStyle = "none";
+ulList.style.padding = "0";
+ulList.style.margin = "0";
+
+// rollLog styling
+rollLog.style.width = "400px";
+rollLog.style.height = "auto";
+rollLog.style.display = "flex";
+rollLog.style.border = "1px solid red";
 
 // creating the document fragment
 const docFrag = document.createDocumentFragment();

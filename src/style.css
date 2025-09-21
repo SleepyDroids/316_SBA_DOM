@@ -14,6 +14,7 @@ body {
   --black: #000000;
   --magenta: #80475e;
   --white: #ffffff;
+  --dark-green: #16302B;
 }
 
 /* saw I might need this for the svg I am borrowing */
@@ -33,7 +34,6 @@ svg * {
 }
 
 .roll_item {
-  list-style-type: none;
   background-color: #ffffff;
   padding: 3px;
   text-align: center;
