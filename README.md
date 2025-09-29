@@ -13,7 +13,6 @@ Last, but not least: added a dice sound and dice animation upon button clicks fo
 
 - Cached an element using both selectElementById and querySelector.
 - Utilized the parent-child-sibling relationship multiple times to navigate between elements at least once.
-- Iterated over a collection of elements to accomplish some task.  
 - Created many elements using createElement.
 - Utilized appendChild and/or prepend to add new elements to the DOM. 
 - Utilized the DocumentFragment interface and also utilized it to append content to the DOM from inside of a function. 
